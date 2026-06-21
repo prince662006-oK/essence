@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hors ligne — L'ESSENCE</title>
+    <link rel="stylesheet" href="/css/style-principal.css">
+    <style>
+        body { display:flex; align-items:center; justify-content:center; min-height:100vh; text-align:center; }
+        .icone-hors-ligne {
+            width: 80px; height: 80px; margin: 0 auto 32px;
+            border: 1px solid var(--couleur-bordure);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 2rem; color: var(--couleur-or);
+        }
+    </style>
+</head>
+<body>
+    <div style="max-width:480px;padding:40px;">
+        <div class="icone-hors-ligne">◎</div>
+        <h1 style="font-family:var(--police-display);font-size:2rem;font-weight:300;color:var(--couleur-ivoire);margin-bottom:16px;">
+            Connexion indisponible
+        </h1>
+        <div style="width:40px;height:1px;background:var(--couleur-or);margin:0 auto 24px;"></div>
+        <p class="corps-md" style="color:var(--couleur-ivoire-sombre);line-height:1.8;margin-bottom:32px;">
+            Il semblerait que vous soyez actuellement hors ligne. Vérifiez votre connexion internet
+            pour continuer à explorer notre sélection de parfums d'exception.
+        </p>
+        <button onclick="window.location.reload()" class="bouton-primaire">
+            Réessayer
+        </button>
+        <p class="corps-md" style="margin-top:20px;font-size:0.75rem;color:var(--couleur-ivoire-sombre);">
+            Les pages visitées récemment restent accessibles en mode hors ligne.
+        </p>
+    </div>
+</body>
+</html>
