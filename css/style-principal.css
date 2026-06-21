@@ -1,0 +1,914 @@
+/* ============================================================
+   L'ESSENCE HAUTE PARFUMERIE — Feuille de style principale
+   Palette : Noir chaud #0D0B08 | Or mat #C9A84C | Ivoire #F5F0E8
+   Typographie : Cormorant Garamond (display) + Jost (body)
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap');
+
+/* ---------- Tokens ---------- */
+:root {
+    --couleur-fond:          #0D0B08;
+    --couleur-fond-surface:  #141210;
+    --couleur-fond-carte:    #1C1915;
+    --couleur-or:            #C9A84C;
+    --couleur-or-clair:      #E2C97E;
+    --couleur-or-sombre:     #8A6E2A;
+    --couleur-ivoire:        #F5F0E8;
+    --couleur-ivoire-sombre: #A09888;
+    --couleur-bordure:       rgba(201, 168, 76, 0.15);
+    --couleur-bordure-forte: rgba(201, 168, 76, 0.4);
+    --ombre-douce:           0 8px 40px rgba(0,0,0,0.5);
+    --ombre-or:              0 0 30px rgba(201, 168, 76, 0.08);
+    --rayon:                 2px;
+    --rayon-lg:              6px;
+    --transition:            0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    --espacement-section:    120px;
+    --max-largeur:           1280px;
+    --marge-laterale:        64px;
+    --marge-mobile:          20px;
+    --police-display:        'Cormorant Garamond', Georgia, serif;
+    --police-corps:          'Jost', system-ui, sans-serif;
+}
+
+/* ---------- Reset ---------- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+    background-color: var(--couleur-fond);
+    color: var(--couleur-ivoire);
+    font-family: var(--police-corps);
+    font-size: 16px;
+    line-height: 1.6;
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+}
+img { display: block; max-width: 100%; height: auto; }
+a { color: inherit; text-decoration: none; }
+button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+/* ---------- Typographie ---------- */
+.titre-display {
+    font-family: var(--police-display);
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+}
+.titre-affiche {
+    font-family: var(--police-display);
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    font-weight: 400;
+    line-height: 1.2;
+}
+.titre-section {
+    font-family: var(--police-display);
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
+    font-weight: 400;
+    letter-spacing: 0.02em;
+}
+.etiquette {
+    font-family: var(--police-corps);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--couleur-or);
+}
+.corps-lg { font-size: 1.05rem; font-weight: 300; line-height: 1.7; }
+.corps-md { font-size: 0.9rem; font-weight: 300; }
+
+/* ---------- Utilitaires ---------- */
+.conteneur {
+    max-width: var(--max-largeur);
+    margin: 0 auto;
+    padding: 0 var(--marge-laterale);
+}
+.separateur-or {
+    display: block;
+    width: 40px;
+    height: 1px;
+    background: var(--couleur-or);
+    margin: 16px 0;
+}
+
+/* ---------- En-tête / Navigation ---------- */
+.entete-principale {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: rgba(13, 11, 8, 0.92);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--couleur-bordure);
+    transition: var(--transition);
+}
+.entete-principale.defilée {
+    background: rgba(13, 11, 8, 0.98);
+    border-bottom-color: var(--couleur-bordure-forte);
+}
+.barre-navigation {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 22px var(--marge-laterale);
+    max-width: var(--max-largeur);
+    margin: 0 auto;
+}
+.logo-principal {
+    font-family: var(--police-display);
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: var(--couleur-or);
+    text-transform: uppercase;
+}
+.menu-navigation {
+    display: flex;
+    align-items: center;
+    gap: 36px;
+    list-style: none;
+}
+.menu-navigation a {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--couleur-ivoire-sombre);
+    transition: color var(--transition);
+    position: relative;
+}
+.menu-navigation a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--couleur-or);
+    transition: width var(--transition);
+}
+.menu-navigation a:hover,
+.menu-navigation a.actif { color: var(--couleur-or); }
+.menu-navigation a:hover::after,
+.menu-navigation a.actif::after { width: 100%; }
+
+.actions-navigation {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.icone-action {
+    width: 20px;
+    height: 20px;
+    color: var(--couleur-ivoire-sombre);
+    transition: color var(--transition);
+    cursor: pointer;
+}
+.icone-action:hover { color: var(--couleur-or); }
+.badge-panier {
+    position: relative;
+}
+.badge-panier .compte {
+    position: absolute;
+    top: -6px; right: -8px;
+    width: 16px; height: 16px;
+    background: var(--couleur-or);
+    color: var(--couleur-fond);
+    font-size: 0.6rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+/* ---------- Bandeau défilant (Signature) ---------- */
+.bandeau-olfactif {
+    overflow: hidden;
+    background: var(--couleur-fond-surface);
+    border-bottom: 1px solid var(--couleur-bordure);
+    padding: 10px 0;
+}
+.bandeau-olfactif-piste {
+    display: flex;
+    gap: 0;
+    animation: defilementBandeau 30s linear infinite;
+    white-space: nowrap;
+}
+.bandeau-olfactif-piste span {
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--couleur-or-sombre);
+    padding: 0 32px;
+    border-right: 1px solid var(--couleur-bordure);
+}
+.bandeau-olfactif-piste span.separateur-note {
+    color: var(--couleur-or);
+    font-size: 0.5rem;
+}
+@keyframes defilementBandeau {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+}
+
+/* ---------- Hero ---------- */
+.section-hero {
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    padding-bottom: 10vh;
+    overflow: hidden;
+}
+.fond-hero {
+    position: absolute;
+    inset: 0;
+    transform: scale(1.05);
+    transition: transform 8s ease-out;
+}
+.diapo-hero {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 1.8s ease;
+}
+.diapo-hero--active {
+    opacity: 1;
+}
+.fond-hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        135deg,
+        rgba(13,11,8,0.88) 0%,
+        rgba(13,11,8,0.5) 50%,
+        rgba(13,11,8,0.2) 100%
+    );
+}
+.contenu-hero {
+    position: relative;
+    z-index: 1;
+    max-width: var(--max-largeur);
+    margin: 0 auto;
+    padding: 0 var(--marge-laterale);
+    width: 100%;
+}
+.sous-titre-hero {
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--couleur-or);
+    margin-bottom: 20px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: apparitionBas 0.8s 0.3s ease forwards;
+}
+.titre-hero {
+    font-family: var(--police-display);
+    font-size: clamp(3rem, 7vw, 6rem);
+    font-weight: 300;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    max-width: 700px;
+    color: var(--couleur-ivoire);
+    opacity: 0;
+    transform: translateY(30px);
+    animation: apparitionBas 0.9s 0.5s ease forwards;
+}
+.titre-hero em {
+    font-style: italic;
+    color: var(--couleur-or-clair);
+}
+.description-hero {
+    max-width: 420px;
+    color: var(--couleur-ivoire-sombre);
+    margin: 24px 0 40px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: apparitionBas 0.8s 0.7s ease forwards;
+}
+.actions-hero {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: apparitionBas 0.8s 0.9s ease forwards;
+}
+
+/* ---------- Boutons ---------- */
+.bouton-primaire {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 36px;
+    background: var(--couleur-or);
+    color: var(--couleur-fond);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    transition: var(--transition);
+    border-radius: var(--rayon);
+}
+.bouton-primaire:hover {
+    background: var(--couleur-or-clair);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(201,168,76,0.3);
+}
+.bouton-secondaire {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 36px;
+    border: 1px solid var(--couleur-bordure-forte);
+    color: var(--couleur-ivoire);
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    transition: var(--transition);
+    border-radius: var(--rayon);
+    background: transparent;
+}
+.bouton-secondaire:hover {
+    border-color: var(--couleur-or);
+    color: var(--couleur-or);
+    background: rgba(201,168,76,0.05);
+}
+.bouton-fantome {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--couleur-or);
+    border-bottom: 1px solid var(--couleur-or-sombre);
+    padding-bottom: 2px;
+    transition: var(--transition);
+}
+.bouton-fantome:hover { border-color: var(--couleur-or); }
+
+/* ---------- Bande marques ---------- */
+.bande-marques {
+    padding: 48px 0;
+    border-top: 1px solid var(--couleur-bordure);
+    border-bottom: 1px solid var(--couleur-bordure);
+    background: var(--couleur-fond-surface);
+}
+.liste-marques {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+    overflow-x: auto;
+    padding: 0 var(--marge-laterale);
+    max-width: var(--max-largeur);
+    margin: 0 auto;
+}
+.nom-marque {
+    font-family: var(--police-display);
+    font-size: 1.4rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    color: var(--couleur-ivoire-sombre);
+    white-space: nowrap;
+    transition: color var(--transition);
+    opacity: 0.4;
+}
+.liste-marques:hover .nom-marque { opacity: 0.4; }
+.nom-marque:hover { color: var(--couleur-or); opacity: 1 !important; }
+
+/* ---------- Section générique ---------- */
+.section {
+    padding: var(--espacement-section) 0;
+}
+.entete-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 64px;
+}
+.groupe-titre-section { display: flex; flex-direction: column; gap: 8px; }
+
+/* ---------- Grille produits / Carte ---------- */
+.grille-produits {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+}
+.carte-produit {
+    cursor: pointer;
+    group: true;
+}
+.carte-produit__visuel {
+    position: relative;
+    aspect-ratio: 4/5;
+    overflow: hidden;
+    background: var(--couleur-fond-carte);
+    border: 1px solid var(--couleur-bordure);
+    margin-bottom: 20px;
+    border-radius: var(--rayon);
+}
+.carte-produit__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0.88;
+}
+.carte-produit:hover .carte-produit__image {
+    transform: scale(1.06);
+    opacity: 1;
+}
+.carte-produit__superposition {
+    position: absolute;
+    inset: 0;
+    background: rgba(13,11,8,0.15);
+    transition: background var(--transition);
+}
+.carte-produit:hover .carte-produit__superposition {
+    background: rgba(13,11,8,0.05);
+}
+.bouton-ajouter-panier {
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+    right: 16px;
+    background: var(--couleur-or);
+    color: var(--couleur-fond);
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 12px;
+    text-align: center;
+    transform: translateY(60px);
+    opacity: 0;
+    transition: var(--transition);
+    border-radius: var(--rayon);
+}
+.carte-produit:hover .bouton-ajouter-panier {
+    transform: translateY(0);
+    opacity: 1;
+}
+.carte-produit__badge {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    padding: 4px 10px;
+    font-size: 0.58rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    background: var(--couleur-or);
+    color: var(--couleur-fond);
+    border-radius: var(--rayon);
+}
+.carte-produit__marque {
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--couleur-or);
+    margin-bottom: 4px;
+}
+.carte-produit__nom {
+    font-family: var(--police-display);
+    font-size: 1.15rem;
+    font-weight: 400;
+    color: var(--couleur-ivoire);
+    margin-bottom: 10px;
+}
+.carte-produit__prix-groupe {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.carte-produit__prix { font-size: 0.9rem; font-weight: 400; color: var(--couleur-ivoire); }
+.carte-produit__ancien-prix {
+    font-size: 0.8rem;
+    font-weight: 300;
+    color: var(--couleur-ivoire-sombre);
+    text-decoration: line-through;
+}
+
+/* ---------- Carrousel ---------- */
+.section-nouveautes { background: var(--couleur-fond-surface); }
+.wrapper-carrousel { overflow: hidden; }
+.piste-carrousel {
+    display: flex;
+    gap: 24px;
+    overflow-x: auto;
+    padding-bottom: 20px;
+    scroll-snap-type: x mandatory;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+.piste-carrousel::-webkit-scrollbar { display: none; }
+.carte-nouveaute {
+    min-width: 300px;
+    max-width: 300px;
+    background: var(--couleur-fond-carte);
+    border: 1px solid var(--couleur-bordure);
+    padding: 24px;
+    text-align: center;
+    scroll-snap-align: start;
+    flex-shrink: 0;
+    border-radius: var(--rayon-lg);
+    transition: border-color var(--transition);
+}
+.carte-nouveaute:hover { border-color: var(--couleur-bordure-forte); }
+.carte-nouveaute__image {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: var(--rayon);
+    margin-bottom: 20px;
+    opacity: 0.88;
+}
+.controles-carrousel { display: flex; gap: 12px; }
+.bouton-carrousel {
+    width: 44px;
+    height: 44px;
+    border: 1px solid var(--couleur-bordure-forte);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--couleur-ivoire);
+    font-size: 1.2rem;
+    transition: var(--transition);
+}
+.bouton-carrousel:hover {
+    background: var(--couleur-or);
+    color: var(--couleur-fond);
+    border-color: var(--couleur-or);
+}
+
+/* ---------- Bannière promotion ---------- */
+.banniere-promotion {
+    position: relative;
+    overflow: hidden;
+    min-height: 480px;
+    display: flex;
+    align-items: center;
+    background: var(--couleur-fond-carte);
+    border: 1px solid var(--couleur-bordure);
+    border-radius: var(--rayon-lg);
+}
+.banniere-promotion__fond {
+    position: absolute;
+    inset: 0;
+    opacity: 0.35;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+.banniere-promotion__voile {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(13,11,8,0.92) 45%, transparent 100%);
+}
+.banniere-promotion__contenu {
+    position: relative;
+    z-index: 1;
+    padding: 64px;
+    max-width: 580px;
+}
+.banniere-promotion__remise {
+    font-family: var(--police-display);
+    font-size: clamp(3rem, 5vw, 4.5rem);
+    font-weight: 300;
+    color: var(--couleur-ivoire);
+    line-height: 1.1;
+    margin: 16px 0;
+}
+.banniere-promotion__remise strong {
+    color: var(--couleur-or);
+    font-weight: 600;
+}
+
+/* ---------- Avantages ---------- */
+.grille-avantages {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+    text-align: center;
+}
+.carte-avantage__icone {
+    width: 56px;
+    height: 56px;
+    border: 1px solid var(--couleur-bordure-forte);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    color: var(--couleur-or);
+    font-size: 1.3rem;
+    transition: var(--transition);
+}
+.carte-avantage:hover .carte-avantage__icone {
+    background: var(--couleur-or);
+    color: var(--couleur-fond);
+    border-color: var(--couleur-or);
+}
+.carte-avantage__titre {
+    font-family: var(--police-display);
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: var(--couleur-ivoire);
+    margin-bottom: 8px;
+}
+.carte-avantage__texte { font-size: 0.85rem; color: var(--couleur-ivoire-sombre); }
+
+/* ---------- Témoignages ---------- */
+.section-temoignages { background: var(--couleur-fond-surface); }
+.grille-temoignages {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+.carte-temoignage {
+    background: var(--couleur-fond-carte);
+    border: 1px solid var(--couleur-bordure);
+    padding: 36px;
+    border-radius: var(--rayon-lg);
+    transition: border-color var(--transition);
+}
+.carte-temoignage.vedette {
+    border-color: rgba(201,168,76,0.3);
+    transform: translateY(12px);
+    box-shadow: var(--ombre-or);
+}
+.carte-temoignage:hover { border-color: var(--couleur-bordure-forte); }
+.etoiles-avis { display: flex; gap: 3px; margin-bottom: 20px; color: var(--couleur-or); font-size: 0.9rem; }
+.texte-temoignage {
+    font-family: var(--police-display);
+    font-style: italic;
+    font-size: 1.05rem;
+    font-weight: 300;
+    color: var(--couleur-ivoire);
+    line-height: 1.7;
+    margin-bottom: 28px;
+}
+.auteur-temoignage { display: flex; align-items: center; gap: 12px; }
+.avatar-auteur { width: 44px; height: 44px; border-radius: 50%; overflow: hidden; border: 1px solid var(--couleur-bordure-forte); }
+.nom-auteur { font-size: 0.85rem; font-weight: 500; color: var(--couleur-ivoire); }
+.titre-auteur { font-size: 0.7rem; color: var(--couleur-ivoire-sombre); letter-spacing: 0.1em; }
+
+/* ---------- Newsletter ---------- */
+.section-newsletter { background: var(--couleur-fond); }
+.contenu-newsletter {
+    max-width: 640px;
+    margin: 0 auto;
+    text-align: center;
+}
+.formulaire-newsletter {
+    display: flex;
+    gap: 0;
+    border: 1px solid var(--couleur-bordure-forte);
+    border-radius: var(--rayon);
+    overflow: hidden;
+    margin-top: 32px;
+}
+.champ-email-newsletter {
+    flex: 1;
+    background: transparent;
+    border: none;
+    padding: 16px 24px;
+    color: var(--couleur-ivoire);
+    font-family: var(--police-corps);
+    font-size: 0.85rem;
+    outline: none;
+}
+.champ-email-newsletter::placeholder { color: var(--couleur-ivoire-sombre); }
+.bouton-newsletter {
+    padding: 16px 32px;
+    background: var(--couleur-or);
+    color: var(--couleur-fond);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    transition: var(--transition);
+    white-space: nowrap;
+}
+.bouton-newsletter:hover { background: var(--couleur-or-clair); }
+
+/* ---------- Pied de page ---------- */
+.pied-de-page {
+    background: var(--couleur-fond-surface);
+    border-top: 1px solid var(--couleur-bordure);
+    padding: 72px 0 40px;
+}
+.grille-pied-de-page {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 48px;
+    margin-bottom: 56px;
+}
+.logo-pied-de-page {
+    font-family: var(--police-display);
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--couleur-or);
+    letter-spacing: 0.1em;
+    display: block;
+    margin-bottom: 16px;
+}
+.description-pied-de-page {
+    font-size: 0.85rem;
+    color: var(--couleur-ivoire-sombre);
+    line-height: 1.7;
+    margin-bottom: 24px;
+}
+.titre-colonne-pied {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--couleur-or);
+    margin-bottom: 20px;
+}
+.liste-liens-pied { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.liste-liens-pied a {
+    font-size: 0.85rem;
+    color: var(--couleur-ivoire-sombre);
+    transition: color var(--transition);
+}
+.liste-liens-pied a:hover { color: var(--couleur-or); }
+.barre-copyright {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 32px;
+    border-top: 1px solid var(--couleur-bordure);
+}
+.texte-copyright { font-size: 0.7rem; color: var(--couleur-ivoire-sombre); letter-spacing: 0.1em; text-transform: uppercase; }
+.icones-reseaux { display: flex; gap: 16px; }
+.icone-reseau {
+    width: 36px; height: 36px;
+    border: 1px solid var(--couleur-bordure);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--couleur-ivoire-sombre);
+    font-size: 0.85rem;
+    transition: var(--transition);
+}
+.icone-reseau:hover { border-color: var(--couleur-or); color: var(--couleur-or); }
+
+/* ---------- Animations ---------- */
+@keyframes apparitionBas {
+    to { opacity: 1; transform: translateY(0); }
+}
+.reveler {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveler.visible { opacity: 1; transform: translateY(0); }
+
+/* ---------- Pages intérieures ---------- */
+.conteneur-page { padding-top: 100px; min-height: 80vh; }
+
+/* Formulaires */
+.champ-formulaire {
+    width: 100%;
+    background: var(--couleur-fond-carte);
+    border: 1px solid var(--couleur-bordure);
+    border-radius: var(--rayon);
+    padding: 14px 16px;
+    color: var(--couleur-ivoire);
+    font-family: var(--police-corps);
+    font-size: 0.9rem;
+    transition: border-color var(--transition);
+    outline: none;
+}
+.champ-formulaire:focus { border-color: var(--couleur-or); }
+.champ-formulaire::placeholder { color: var(--couleur-ivoire-sombre); }
+.etiquette-formulaire {
+    display: block;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--couleur-ivoire-sombre);
+    margin-bottom: 8px;
+}
+.groupe-formulaire { margin-bottom: 20px; }
+.message-erreur { color: #cf6679; font-size: 0.8rem; margin-top: 6px; }
+.message-succes { color: #7fb890; font-size: 0.85rem; }
+
+/* Alertes */
+.alerte {
+    padding: 14px 20px;
+    border-radius: var(--rayon);
+    font-size: 0.85rem;
+    margin-bottom: 20px;
+    border: 1px solid;
+}
+.alerte-erreur { background: rgba(207, 102, 121, 0.1); border-color: rgba(207, 102, 121, 0.4); color: #e08595; }
+.alerte-succes { background: rgba(127, 184, 144, 0.1); border-color: rgba(127, 184, 144, 0.4); color: #7fb890; }
+
+/* Panier */
+.tableau-panier { width: 100%; border-collapse: collapse; }
+.tableau-panier th, .tableau-panier td {
+    padding: 20px 16px;
+    border-bottom: 1px solid var(--couleur-bordure);
+    text-align: left;
+    font-size: 0.9rem;
+}
+.tableau-panier th {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--couleur-ivoire-sombre);
+}
+.resume-commande {
+    background: var(--couleur-fond-carte);
+    border: 1px solid var(--couleur-bordure);
+    padding: 32px;
+    border-radius: var(--rayon-lg);
+    position: sticky;
+    top: 100px;
+}
+
+/* Administration */
+.tableau-bord {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    min-height: 100vh;
+}
+.barre-laterale {
+    background: var(--couleur-fond-surface);
+    border-right: 1px solid var(--couleur-bordure);
+    padding: 32px 0;
+}
+.menu-lateral { list-style: none; }
+.menu-lateral a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 24px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--couleur-ivoire-sombre);
+    transition: var(--transition);
+}
+.menu-lateral a:hover, .menu-lateral a.actif {
+    color: var(--couleur-or);
+    background: rgba(201,168,76,0.05);
+    border-right: 2px solid var(--couleur-or);
+}
+.contenu-administration { padding: 40px; }
+.carte-statistique {
+    background: var(--couleur-fond-carte);
+    border: 1px solid var(--couleur-bordure);
+    border-radius: var(--rayon-lg);
+    padding: 28px;
+}
+.valeur-statistique {
+    font-family: var(--police-display);
+    font-size: 2.5rem;
+    font-weight: 400;
+    color: var(--couleur-or);
+}
+.grille-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 40px; }
+
+/* Responsive */
+@media (max-width: 1024px) {
+    :root { --marge-laterale: 40px; }
+    .grille-produits { grid-template-columns: repeat(2, 1fr); }
+    .grille-avantages { grid-template-columns: repeat(2, 1fr); }
+    .grille-pied-de-page { grid-template-columns: 1fr 1fr; }
+    .grille-stats { grid-template-columns: repeat(2, 1fr); }
+    .tableau-bord { grid-template-columns: 1fr; }
+}
+@media (max-width: 768px) {
+    :root { --marge-laterale: var(--marge-mobile); --espacement-section: 72px; }
+    .menu-navigation, .barre-navigation .champ-recherche { display: none; }
+    .grille-produits { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .grille-temoignages { grid-template-columns: 1fr; }
+    .carte-temoignage.vedette { transform: none; }
+    .banniere-promotion__contenu { padding: 36px 24px; }
+    .grille-avantages { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+    .grille-pied-de-page { grid-template-columns: 1fr; gap: 32px; }
+    .formulaire-newsletter { flex-direction: column; }
+    .barre-copyright { flex-direction: column; gap: 16px; text-align: center; }
+    .banniere-promotion__remise { font-size: 2rem; }
+}
+@media (max-width: 480px) {
+    .grille-produits { grid-template-columns: 1fr; }
+    .titre-hero { font-size: 2.5rem; }
+}
